@@ -1,0 +1,41 @@
+project: ccs-deploy-test
+system: front
+type: front-static
+
+image: caddy:2-alpine
+image_mode: bind-mount
+port: 80
+
+github:
+  repo: devborlot/ccs-deploy-test
+  user: devborlot
+  dist_branch: dist
+
+version:
+  source: file
+  file: package.json
+  field: version
+
+networks:
+  - public
+
+healthcheck:
+  path: /
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 10s
+
+instances:
+  production:
+    domain: ccs-test.dev.borlot.com.br
+    source:
+      type: dist
+    keep_versions: 3
+
+notify:
+  channels:
+    - integration: telegram
+      events:
+        - deploy_success
+        - deploy_failure

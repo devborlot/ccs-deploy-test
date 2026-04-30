@@ -1,0 +1,6 @@
+{
+  "name": "ccs-deploy-test",
+  "version": "0.1.0",
+  "description": "CCS deploy test fixture - static site served by Caddy",
+  "private": true
+}
