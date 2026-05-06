@@ -1,0 +1,22 @@
+project: ccs-deploy-test
+system: sys
+type: image
+image: nginx:1
+port: 80
+ports:
+  - "127.0.0.1:8081:80"
+
+healthcheck:
+  mode: http
+  path: /
+  interval: 5s
+  timeout: 3s
+  retries: 3
+
+instances:
+  production:
+    domain: h.example.com
+    source:
+      type: image
+      image: nginx:1
+    keep_versions: 2
