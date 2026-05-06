@@ -1,0 +1,14 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:8080"
+    environment:
+      LOG_LEVEL: info
+      WORKER_THREADS: "4"
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: changeme
