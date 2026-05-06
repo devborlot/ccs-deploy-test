@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:1
 EXPOSE 8080
 COPY index.html /usr/share/nginx/html/
 RUN sed -i 's/listen.*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
