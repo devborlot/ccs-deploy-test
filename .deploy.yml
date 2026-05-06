@@ -1,0 +1,20 @@
+project: ccs-deploy-test
+system: sys
+type: image
+image: nginx:alpine
+port: 80
+
+healthcheck:
+  mode: http
+  path: /
+  interval: 30s
+  timeout: 10s
+  retries: 3
+
+instances:
+  production:
+    domain: f.example.com
+    source:
+      type: image
+      image: nginx:alpine
+    keep_versions: 2
